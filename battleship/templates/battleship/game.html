@@ -1,0 +1,78 @@
+{% load static from staticfiles %}
+<html>
+<head>
+<title>The game</title>
+<link rel="stylesheet" href="{% static 'battleship/style.css' %}" type="text/css" media="all">
+<script>
+{% if turn == True %}
+function makeTurn(x,y)
+{
+  document.getElementById("xCoord").value = x;
+  document.getElementById("yCoord").value = y;
+  document.getElementById("turnForm").submit();
+}
+{% else %}
+window.setTimeout("window.location.reload()",3000)
+{% endif %}
+</script>
+</head>
+<body>
+<h1 align="center">
+   {% if turn == False %}
+   Wait for other player
+   {% else %}
+   Shoot!
+   {% endif %}
+</h1>
+<p align="center">...</p>
+<div id="whole_game">
+  <div id="first_player">
+{% for line in player1_field %}
+  <div class="row">
+  {% for cell in line %}
+   {% if cell == 1 %}
+    <div class="ship_shooted"></div>
+   {% elif cell == 0 %}
+    <div class="sea_shooted"></div>
+   {% elif cell == -1 %}
+    <div class="ship"></div>
+   {% else %}
+    <div class="sea"></div>
+   {% endif %}
+  {% endfor %}
+    </div>
+{% endfor %}
+  </div>
+  <div id="second_player">
+{% for line in player2_field %}
+  <div class="row">
+  {% for cell in line %}
+   <div 
+   {% if cell == 1 %}
+    class="ship_shooted"
+   {% elif cell == 0 %}
+    class="sea_shooted"
+   {% elif cell == -1 %}
+    class="ship"
+   {% else %}
+    class="sea"
+   {% if turn == True %}
+   style="cursor: pointer;"
+   onClick="makeTurn({{forloop.counter}},{{forloop.parentloop.counter}})"
+   {% endif %}
+   {% endif %}
+    ></div>
+  {% endfor %}
+    </div>
+{% endfor %}
+  </div>
+</div>
+{% if turn == True %}
+<form style="height:0;" action="{% url 'turn' %}" id="turnForm" method="post">
+{% csrf_token %}
+  <input type="hidden" id="xCoord" name="x" value="1" />
+  <input type="hidden" id="yCoord" name="y" value="1" />
+</form>  
+{% endif %}
+</body>
+</html>

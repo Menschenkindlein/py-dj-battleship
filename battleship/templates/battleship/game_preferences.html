@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>Start new game</title>
+</head>
+<body>
+  <h1 align="center">Start new game</h1>
+  <form style="width: 150px;
+               margin: 0 auto;
+               border: solid 1px black;
+               padding: 20px;"
+        action="{% url 'startgame' %}" method="post">
+    {% csrf_token %}
+    The opponent:<br />
+    <input type="radio" name="opponent" value="random"> Random<br />
+    <input type="radio" name="opponent" value="systematic"> Systematic<br />
+    <input type="radio" name="opponent" value="human"> Human<br />
+    <input type="submit" value="Start game" />
+  </form>
+</body>
+</html>

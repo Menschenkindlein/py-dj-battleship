@@ -1,0 +1,43 @@
+#whole_game {
+    width: 780px;
+    margin: 0 auto;
+}
+
+.row div {
+    height: 35px;
+    width: 35px;
+    float: left;
+}
+
+.row {
+    float: left;
+    clear: both;
+}
+
+#first_player {
+    border: solid 5px black;
+    float: left;
+    margin: 15px;
+}
+
+#second_player {
+    border: solid 5px black;
+    float: left;
+    margin: 15px;
+}
+
+.sea {
+    background-color: gray;
+}
+
+.ship {
+    background-color: black;
+}
+
+.sea_shooted {
+    background-color: blue;
+}
+
+.ship_shooted {
+    background-color: red;
+}

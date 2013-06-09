@@ -1,0 +1,59 @@
+{% load static from staticfiles %}
+<html>
+<head>
+<link rel="stylesheet" href="{% static 'battleship/style.css' %}" type="text/css" media="all">
+<title>
+  {% if you_win %}
+  You win!
+  {% else %}
+  You lose!
+  {% endif %}
+</title>
+</head>
+<body>
+  <h1 align="center">
+  {% if you_win %}
+  You win!
+  {% else %}
+  You lose!
+  {% endif %}
+  </h1>
+<p align="center"><a href="{% url 'game_preferences' %}">New game</a></p>
+<div id="whole_game" style="">
+  <div id="first_player">
+{% for line in player1_field %}
+  <div class="row">
+  {% for cell in line %}
+   {% if cell == 1 %}
+    <div class="ship_shooted"></div>
+   {% elif cell == 0 %}
+    <div class="sea_shooted"></div>
+   {% elif cell == -1 %}
+    <div class="ship"></div>
+   {% else %}
+    <div class="sea"></div>
+   {% endif %}
+  {% endfor %}
+    </div>
+{% endfor %}
+  </div>
+  <div id="second_player">
+{% for line in player2_field %}
+  <div class="row">
+  {% for cell in line %}
+   {% if cell == 1 %}
+    <div class="ship_shooted"></div>
+   {% elif cell == 0 %}
+    <div class="sea_shooted"></div>
+   {% elif cell == -1 %}
+    <div class="ship"></div>
+   {% else %}
+    <div class="sea"></div>
+   {% endif %}
+  {% endfor %}
+    </div>
+{% endfor %}
+  </div>
+</div>
+</body>
+</html>

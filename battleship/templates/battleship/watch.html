@@ -1,0 +1,43 @@
+<div id="whole_game">
+  <div id="first_player">
+{% for line in player1_field %}
+  <div class="row">
+  {% for cell in line %}
+   {% if cell == 1 %}
+    <div class="ship_shooted"></div>
+   {% elif cell == 0 %}
+    <div class="sea_shooted"></div>
+   {% elif cell == -1 %}
+    <div class="ship"></div>
+   {% else %}
+    <div class="sea"></div>
+   {% endif %}
+  {% endfor %}
+    </div>
+{% endfor %}
+  </div>
+  <div id="turn">
+   {% if turn == True %}
+   <div id="arrow_left"></div>
+   {% else %}
+   <div id="arrow_right"></div>
+   {% endif %}
+  </div>
+  <div id="second_player">
+{% for line in player2_field %}
+  <div class="row">
+  {% for cell in line %}
+   {% if cell == 1 %}
+    <div class="ship_shooted"></div>
+   {% elif cell == 0 %}
+    <div class="sea_shooted"></div>
+   {% elif cell == -1 %}
+    <div class="ship"></div>
+   {% else %}
+    <div class="sea"></div>
+   {% endif %}
+  {% endfor %}
+    </div>
+{% endfor %}
+  </div>
+</div>
