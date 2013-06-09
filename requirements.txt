@@ -1,3 +1,2 @@
-bship
 Django==1.5
 South>=0.8
